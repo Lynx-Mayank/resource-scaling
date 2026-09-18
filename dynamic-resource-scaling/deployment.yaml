@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: scaling-demo
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: scaling-demo
+
+  template:
+    metadata:
+      labels:
+        app: scaling-demo
+
+    spec:
+      containers:
+        - name: scaling-demo
+          image: scaling-demo:1.0
+
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 5000
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+
+            limits:
+              cpu: "500m"
+              memory: "256Mi"

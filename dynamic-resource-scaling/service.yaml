@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: scaling-demo-service
+
+spec:
+  selector:
+    app: scaling-demo
+
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+
+  type: NodePort
