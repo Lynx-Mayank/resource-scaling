@@ -1,0 +1,9 @@
+minikube start --driver=docker
+
+kubectl port-forward service/scaling-demo-service 5000:80
+
+python scaler/scaler.py
+
+while ($true) {
+    Invoke-WebRequest "http://127.0.0.1:5000/work" | Out-Null
+}
